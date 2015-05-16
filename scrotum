@@ -1,3 +1,23 @@
 #! /usr/bin/sh
 
-escrotum $1 -e 'mv $f ~/Pictures/screencaps/ 2>/dev/null'
+#author:rski
+#email:rom.skiad@gmail.com
+#filename:scrotum
+#take a screenshot with escrotum and put it in a $MONTH_YEAR folder
+
+SCREENCAPSROOT=~/Pictures/screencaps
+SUBDIR="$(date +%b)_$(date +%Y)"
+
+if [ ! -d "$SCREENCAPSROOT/$SUBDIR" ]; then
+  mkdir -p "$SCREENCAPSROOT/$SUBDIR"
+fi
+
+DIR=$SCREENCAPSROOT/$SUBDIR/
+echo $DIR
+
+#scrot and escrotum for some don't parse $VARIABLES properly
+#so -e 'mv $f $DIR wont work'
+#this is a workaround
+FILE=$(escrotum $1)
+
+mv $FILE $DIR
