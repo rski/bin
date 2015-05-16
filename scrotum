@@ -5,19 +5,11 @@
 #filename:scrotum
 #take a screenshot with escrotum and put it in a $MONTH_YEAR folder
 
-screenshoters_array=("scrot" "escrotum")
 SCREENCAPSROOT=~/Pictures/screencaps
+SCREENSHOT_COMMAND=escrotum
 SUBDIR="$(date +%b)_$(date +%Y)"
 
-#figure out which screenshot program is installed
-for i in "${screenshoters_array[@]}"
-do
-  if [ $(which $i) ]; then
-    SCREENSHOT_COMMAND=$i
-    echo "Using $SCREENSHOT_COMMAND"
-    break
-  fi
-done
+type $SCREENSHOT_COMMAND >/dev/null 2>&1 || { echo >&2 "Escrotum is not installed."; exit 1; }
 
 #create the screenshot directory
 if [ ! -d "$SCREENCAPSROOT/$SUBDIR" ]; then
