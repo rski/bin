@@ -5,19 +5,31 @@
 #filename:scrotum
 #take a screenshot with escrotum and put it in a $MONTH_YEAR folder
 
+screenshoters_array=("scrot" "escrotum")
 SCREENCAPSROOT=~/Pictures/screencaps
 SUBDIR="$(date +%b)_$(date +%Y)"
 
+#figure out which screenshot program is installed
+for i in "${screenshoters_array[@]}"
+do
+  if [ $(which $i) ]; then
+    SCREENSHOT_COMMAND=$i
+    echo "Using $SCREENSHOT_COMMAND"
+    break
+  fi
+done
+
+#create the screenshot directory
 if [ ! -d "$SCREENCAPSROOT/$SUBDIR" ]; then
   mkdir -p "$SCREENCAPSROOT/$SUBDIR"
 fi
 
 DIR=$SCREENCAPSROOT/$SUBDIR/
-echo $DIR
 
 #scrot and escrotum for some don't parse $VARIABLES properly
 #so -e 'mv $f $DIR wont work'
 #this is a workaround
-FILE=$(escrotum $1)
+FILE=$($SCREENSHOT_COMMAND $1)
 
+echo "Moving screenshot to $DIR"
 mv $FILE $DIR
