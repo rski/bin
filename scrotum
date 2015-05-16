@@ -1,0 +1,3 @@
+#! /usr/bin/sh
+
+escrotum $1 -e 'mv $f ~/Pictures/screencaps/ 2>/dev/null'
