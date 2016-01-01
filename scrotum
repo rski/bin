@@ -3,25 +3,5 @@
 #author:rski
 #email:rom.skiad@gmail.com
 #filename:scrotum
-#take a screenshot with escrotum and put it in a $MONTH_YEAR folder
-
-SCREENCAPSROOT=~/Pictures/screencaps
-SCREENSHOT_COMMAND=escrotum
-SUBDIR="$(date +%b)_$(date +%Y)"
-
-type $SCREENSHOT_COMMAND >/dev/null 2>&1 || { echo >&2 "Escrotum is not installed."; exit 1; }
-
-#create the screenshot directory
-if [ ! -d "$SCREENCAPSROOT/$SUBDIR" ]; then
-  mkdir -p "$SCREENCAPSROOT/$SUBDIR"
-fi
-
-DIR=$SCREENCAPSROOT/$SUBDIR/
-
-#scrot and escrotum for some don't parse $VARIABLES properly
-#so -e 'mv $f $DIR wont work'
-#this is a workaround
-FILE=$($SCREENSHOT_COMMAND $1)
-
-echo "Moving screenshot to $DIR"
-mv $FILE $DIR
+#take a screenshot with escrotum and put it in a $YEAR/$MONTH folder
+escrotum -e "mkdir -p ~/Pictures/screencaps/%Y/$(date +%b) && mv \$f ~/Pictures/screencaps/%Y/$(date +%b)/"
