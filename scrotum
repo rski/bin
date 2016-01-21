@@ -4,5 +4,5 @@
 #email:rom.skiad@gmail.com
 #filename:scrotum
 #take a screenshot with escrotum and put it in a $YEAR/$MONTH folder
-DEST=$HOME/Pictures/screencaps/%Y/$(date +%b)
-escrotum $1 -e "mkdir -p $DEST && mv \$f $DEST"
+. ./lib/env
+escrotum $1 -e "mkdir -p $SCREENCAPS_DIR && mv \$f $SCREENCAPS_DIR"

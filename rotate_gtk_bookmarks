@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. ./lib/env
+BOOKMARKS_FILE="$HOME/.config/gtk-3.0/bookmarks"
+OLD_BOOKMARK="file://$HOME/Pictures/screencaps/..../.*"
+NEW_BOOKMARK="file://${SCREENCAPS_DIR} Caps"
+
+sed -i "s_${OLD_BOOKMARK}_${NEW_BOOKMARK}_" $BOOKMARKS_FILE

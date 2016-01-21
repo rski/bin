@@ -1,0 +1,3 @@
+#!/bin/bash
+#This file defines variables that are shared across different bin scripts
+SCREENCAPS_DIR=$HOME/Pictures/screencaps/$(date +%Y)/$(date +%b)
