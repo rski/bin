@@ -10,4 +10,6 @@
 CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 . ${CURR_DIR}/lib/env
+pkill compton
 escrotum $1 -e "mkdir -p $SCREENCAPS_DIR && mv \$f $SCREENCAPS_DIR"
+compositor
