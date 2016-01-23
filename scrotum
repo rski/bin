@@ -4,5 +4,10 @@
 #email:rom.skiad@gmail.com
 #filename:scrotum
 #take a screenshot with escrotum and put it in a $YEAR/$MONTH folder
-. ./lib/env
+
+# self awareness magic
+# from http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+. ${CURR_DIR}/lib/env
 escrotum $1 -e "mkdir -p $SCREENCAPS_DIR && mv \$f $SCREENCAPS_DIR"

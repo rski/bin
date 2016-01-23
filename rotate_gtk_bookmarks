@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-. ./lib/env
+# self awareness magic
+# from http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+. ${CURR_DIR}/lib/env
 BOOKMARKS_FILE="$HOME/.config/gtk-3.0/bookmarks"
 OLD_BOOKMARK="file://$HOME/Pictures/screencaps/..../.*"
 NEW_BOOKMARK="file://${SCREENCAPS_DIR} Caps"
