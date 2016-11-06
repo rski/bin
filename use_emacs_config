@@ -1,0 +1,17 @@
+# -*- mode: sh; -*-
+set -e
+
+HELP_STRING="Usage: 'use_emacs_config [ emacs | spacemacs ]'
+                    \nThe folders .emacs_vanilla.d and .spacemacs.d need to exist"
+CONF=$1
+
+
+if [ "$CONF" == "emacs" ]; then
+    rm -rf $HOME/.emacs.d
+    ln -sf $HOME/.emacs_vanilla.d $HOME/.emacs.d
+elif [ "$CONF" == "spacemacs" ]; then
+    rm -rf $HOME/.emacs.d
+    ln -sf $HOME/.spacemacs.d $HOME/.emacs.d
+else
+    echo -e $HELP_STRING
+fi
